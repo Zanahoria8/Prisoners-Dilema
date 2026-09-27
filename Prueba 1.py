@@ -23,6 +23,24 @@ def always_deflect():
 def always_random():
     return random.choice(["C", "D"])
 
+def tit_for_tat(ronda, jugador):
+    if ronda == 0:
+        return "C"
+    else:
+        if jugador == "A":
+            if jugadas_B[i-1] == "C":
+                return "C"
+            elif jugadas_B[i-1] == "D":
+                return "D"
+        elif jugador == "B":
+                if jugadas_A[i-1] == "C":
+                    return "C"
+                elif jugadas_A[i-1] == "D":
+                    return "D"
+
+
+    return 
+
 
 def points():
     global A_points, B_points
@@ -45,16 +63,16 @@ def points():
 
 
 
-numero_rondas = 100
+numero_rondas = 200
 
 for i in range(numero_rondas):
 
     # jugador A
-    A = always_cooperate()
+    A = always_random()
     jugadas_A.append(A)
 
     # jugador B
-    B = always_random()
+    B = tit_for_tat(i,"B")
     jugadas_B.append(B)
 
     # calcular puntos
