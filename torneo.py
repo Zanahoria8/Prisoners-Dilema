@@ -42,9 +42,80 @@ def tit_for_tat(ronda, jugador):
                 elif jugadas_A[i-1] == "D":
                     return "D"
 
+def tit_for_tat_chill(ronda, jugador):  #solo va por mayoria, tirando a cooperar
+
+    if ronda == 0:
+        return "C"
+    else:
+        if jugador == "A":
+            if jugadas_B[i-1] == "C" and jugadas_C[i-1] == "C":
+                return "C"
+            if jugadas_B[i-1] == "D" and jugadas_C[i-1] == "C":
+                return "C"
+            if jugadas_B[i-1] == "C" and jugadas_C[i-1] == "D":
+                            return "C"
+            if jugadas_B[i-1] == "D" and jugadas_C[i-1] == "D":
+                            return "D"
+        if jugador == "B":
+            if jugadas_A[i-1] == "C" and jugadas_C[i-1] == "C":
+                return "C"
+            if jugadas_A[i-1] == "D" and jugadas_C[i-1] == "C":
+                return "C"
+            if jugadas_A[i-1] == "C" and jugadas_C[i-1] == "D":
+                return "C"
+            if jugadas_A[i-1] == "D" and jugadas_C[i-1] == "D":
+                return "D"
+        if jugador == "C":
+            if jugadas_A[i-1] == "C" and jugadas_B[i-1] == "C":
+                return "C"
+            if jugadas_A[i-1] == "D" and jugadas_B[i-1] == "C":
+                return "C"
+            if jugadas_A[i-1] == "C" and jugadas_B[i-1] == "D":
+                return "C"
+            if jugadas_A[i-1] == "D" and jugadas_B[i-1] == "D":
+                return "D"
+    return
+
+
+def tit_for_tat_nervioso(ronda, jugador):  #solo va por mayoria, tirando a deflectar
+
+    if ronda == 0:
+        return "C"
+    else:
+        if jugador == "A":
+            if jugadas_B[i-1] == "C" and jugadas_C[i-1] == "C":
+                return "C"
+            if jugadas_B[i-1] == "D" and jugadas_C[i-1] == "C":
+                return "D"
+            if jugadas_B[i-1] == "C" and jugadas_C[i-1] == "D":
+                            return "D"
+            if jugadas_B[i-1] == "D" and jugadas_C[i-1] == "D":
+                            return "D"
+        if jugador == "B":
+            if jugadas_A[i-1] == "C" and jugadas_C[i-1] == "C":
+                return "C"
+            if jugadas_A[i-1] == "D" and jugadas_C[i-1] == "C":
+                return "D"
+            if jugadas_A[i-1] == "C" and jugadas_C[i-1] == "D":
+                return "D"
+            if jugadas_A[i-1] == "D" and jugadas_C[i-1] == "D":
+                return "D"
+        if jugador == "C":
+            if jugadas_A[i-1] == "C" and jugadas_B[i-1] == "C":
+                return "C"
+            if jugadas_A[i-1] == "D" and jugadas_B[i-1] == "C":
+                return "D"
+            if jugadas_A[i-1] == "C" and jugadas_B[i-1] == "D":
+                return "D"
+            if jugadas_A[i-1] == "D" and jugadas_B[i-1] == "D":
+                return "D"
+    return
+
+
 
     return 
-
+def alvector():
+    return
 
 def points():
     global A_points, B_points, C_points
@@ -68,8 +139,8 @@ def points():
         B_points += 6
         C_points += 3
     if A == "D" and B == "C" and C == "C":
-        A_points += 3
-        B_points += 6
+        A_points += 6
+        B_points += 3
         C_points += 3
     # uno copera
     if A == "C" and B == "D" and C == "D":
@@ -95,15 +166,15 @@ numero_rondas = 100
 for i in range(numero_rondas):
 
     # jugador A
-    A = always_cooperate()
+    A = always_random()
     jugadas_A.append(A)
 
     # jugador B
-    B = always_deflect()
+    B = tit_for_tat_nervioso(i,"C")
     jugadas_B.append(B)
 
     # jugador C
-    C = always_random()
+    C = tit_for_tat_chill(i,"C")
     jugadas_C.append(C)
 
     # calcular puntos
@@ -128,7 +199,7 @@ with open(file_path, "w", newline="", encoding="utf-8") as file:
     writer = csv.writer(file)
 
     # Cabecera
-    writer.writerow(["Ronda", "A", "B", "Puntos A", "Puntos B"])
+    writer.writerow(["Ronda", "A", "B","C", "Puntos A", "Puntos B", "Puntos C"])
 
     # Datos
     writer.writerows(history)
