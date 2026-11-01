@@ -161,7 +161,7 @@ def points():
 
 
 
-numero_rondas = 100
+numero_rondas = 200
 
 for i in range(numero_rondas):
 
@@ -170,7 +170,7 @@ for i in range(numero_rondas):
     jugadas_A.append(A)
 
     # jugador B
-    B = tit_for_tat_nervioso(i,"C")
+    B = tit_for_tat_nervioso(i,"B")
     jugadas_B.append(B)
 
     # jugador C
