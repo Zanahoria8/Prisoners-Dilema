@@ -20,6 +20,7 @@ C_points = 0
 
 
 
+
 def always_cooperate(estrat1,estrat2,estrat3):
     return "C"
 
@@ -31,39 +32,6 @@ def always_random(historial_propio, historial_rival_1, historial_rival_2):
     return random.choice(["C", "D"])
 
 
-def tit_for_tat_chill(ronda, jugador):  #solo va por mayoria, tirando a cooperar
-
-    if ronda == 0:
-        return "C"
-    else:
-        if jugador == "A":
-            if jugadas_B[i-1] == "C" and jugadas_C[i-1] == "C":
-                return "C"
-            if jugadas_B[i-1] == "D" and jugadas_C[i-1] == "C":
-                return "C"
-            if jugadas_B[i-1] == "C" and jugadas_C[i-1] == "D":
-                            return "C"
-            if jugadas_B[i-1] == "D" and jugadas_C[i-1] == "D":
-                            return "D"
-        if jugador == "B":
-            if jugadas_A[i-1] == "C" and jugadas_C[i-1] == "C":
-                return "C"
-            if jugadas_A[i-1] == "D" and jugadas_C[i-1] == "C":
-                return "C"
-            if jugadas_A[i-1] == "C" and jugadas_C[i-1] == "D":
-                return "C"
-            if jugadas_A[i-1] == "D" and jugadas_C[i-1] == "D":
-                return "D"
-        if jugador == "C":
-            if jugadas_A[i-1] == "C" and jugadas_B[i-1] == "C":
-                return "C"
-            if jugadas_A[i-1] == "D" and jugadas_B[i-1] == "C":
-                return "C"
-            if jugadas_A[i-1] == "C" and jugadas_B[i-1] == "D":
-                return "C"
-            if jugadas_A[i-1] == "D" and jugadas_B[i-1] == "D":
-                return "D"
-    return
 
 
 def tolerante(historial_propio, historial_rival_1, historial_rival_2):
@@ -87,9 +55,6 @@ def estricto(historial_propio, historial_rival_1, historial_rival_2):
 
 
 
-
-def alvector():
-    return
 
 
 lista_estrats = [always_random,always_cooperate,always_deflect,tolerante,estricto]
@@ -159,7 +124,7 @@ def partida(estrat1,estrat2,estrat3):
         C = estrat3(jugadas_C,jugadas_A,jugadas_B)
         
 
-        jugadas_A.append(A)
+        jugadas_A.append(A) # han de estar al final para que todas decidan a la vez
         jugadas_B.append(B)
         jugadas_C.append(C)
         # calcular puntos
@@ -246,3 +211,4 @@ print("Última ronda:", history[-1])
 
 guardar()
 print("fin")
+# bombo
